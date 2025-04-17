@@ -1,7 +1,7 @@
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { glob } from 'glob';
-import { processPromptFile } from './lib/promptProcessor';
+import { PromptProcessor } from './lib/prompt/processor'; // Import the class
 
 const PROMPTS_DIR = path.resolve(__dirname, '../prompts'); // Input directory
 const OUTPUT_DIR = path.resolve(__dirname, '../dist/prompts'); // Output directory
@@ -11,6 +11,9 @@ async function main() {
         // Ensure the output directory exists
         await fs.mkdir(OUTPUT_DIR, { recursive: true });
         console.log(`Output directory created or already exists: ${OUTPUT_DIR}`);
+
+        // Instantiate the PromptProcessor
+        const promptProcessor = new PromptProcessor(PROMPTS_DIR);
 
         // Find all markdown files in the prompts directory and its subdirectories
         const files = await glob('**/*.md', { cwd: PROMPTS_DIR, absolute: true });
@@ -25,7 +28,8 @@ async function main() {
         for (const filePath of files) {
             console.log(`Processing: ${path.relative(PROMPTS_DIR, filePath)}`);
             try {
-                const processedContent = await processPromptFile(filePath, PROMPTS_DIR);
+                // Use the processor instance
+                const processedContent = await promptProcessor.processFile(filePath, 1);
 
                 // Determine the output path, preserving the subdirectory structure
                 const relativePath = path.relative(PROMPTS_DIR, filePath);
