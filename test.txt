@@ -1,0 +1,8 @@
+
+> prompts@1.0.0 build:prompts
+> ts-node src/build.ts -l debug
+
+
+> prompts@1.0.0 build:prompts
+> ts-node src/build.ts -l debug
+
