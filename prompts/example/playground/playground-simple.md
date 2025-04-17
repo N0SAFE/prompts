@@ -2,7 +2,7 @@
 
 ## Test Case: Simple Include
 
-**Objective:** Verify the basic functionality of the `{{include: file}}` directive.
+**Objective:** Verify the basic functionality of the `!{{include: file}}` directive.
 
 **Prompt Under Test:** `prompts/example/simple-include.md`
 
@@ -11,7 +11,7 @@ This test prompt instructs me (as the AI Tester) to analyze the `simple-include.
 
 **Execution Simulation:**
 1.  Process `prompts/example/simple-include.md`.
-2.  Identify the `{{include: ../common/persona-expert-coder.md}}` directive.
+2.  Identify the `!{{include: ../common/persona-expert-coder.md}}` directive.
 3.  Fetch the content of `prompts/common/persona-expert-coder.md`.
 4.  Replace the directive with the fetched content.
 

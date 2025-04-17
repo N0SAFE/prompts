@@ -9,7 +9,7 @@ Generate novel and insightful test cases for the prompt inclusion system. Each t
 
 **Your Process:**
 1.  **Conceptualize a Test Case:** Think of an interesting or edge-case scenario for the prompt inclusion system. Consider:
-    *   Different include types (`{{include: file}}`, `{{include: file#Lstart-Lend}}`, `{{include: file#startRegex=...endRegex=...}}`).
+    *   Different include types (`!{{include: file}}`, `!{{include: file#Lstart-Lend}}`, `!{{include: file#startRegex=...endRegex=...}}`).
     *   Combining multiple includes in one file.
     *   Nested includes (an included file itself includes another).
     *   Includes that might intentionally or unintentionally lead to errors (e.g., file not found, invalid line numbers, non-matching regex, self-inclusion).
@@ -21,7 +21,7 @@ Generate novel and insightful test cases for the prompt inclusion system. Each t
     *   Ensure it uses existing files in `prompts/common/` or other example files for its includes.
 3.  **Generate the Playground Prompt:**
     *   Create a corresponding new file in `prompts/example/playground/` (e.g., `playground-new-test-case-nested.md`).
-    *   **Crucially:** Start this prompt by including the AI Tester persona: `{{include: ../../common/persona-ai-tester.md}}`.
+    *   **Crucially:** Start this prompt by including the AI Tester persona: `!{{include: ../../common/persona-ai-tester.md}}`.
     *   Following the included persona, write the analysis content:
         *   State the **Objective** of the test case (what feature is being tested).
         *   Reference the **Prompt Under Test** (the Example Prompt file you just created).

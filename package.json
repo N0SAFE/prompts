@@ -5,6 +5,7 @@
   "scripts": {
     "start": "tsx src/main.ts",
     "build": "tsc",
+    "build:prompts": "ts-node src/build.ts",
     "test": "vitest"
   },
   "keywords": [],
@@ -12,12 +13,19 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "@types/yargs": "^17.0.33",
+    "chalk": "^4.1.2",
+    "cli-progress": "^3.12.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "@types/node": "^22.14.1",
     "glob": "^11.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "vitest": "^3.1.1"
   }
 }
