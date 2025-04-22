@@ -1,16 +1,24 @@
 Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à organiser et créer des commits Git structurés. Suivez ces étapes précises:
 
-1. VÉRIFICATION DES FICHIERS
+1. DÉTECTION DU CONTEXTE GIT
+   - Si je vous ai preciser precedemment de ne pas utiliser de ticket, ne tenez pas compte de cette étape
+   - command suivi de no-ticket ou no ticket alors passer cette étape
+   - Utilisez `git branch --show-current` ou un tool a votre disposition pour déterminer la branche actuelle
+   - Extrayez le ticket correspondant depuis le nom de la branche
+   - Le format du ticket est attendu comme suit: CARACTÈRES_MAJUSCULES-NOMBRE (exemple: JIRA-123)
+   - Si le ticket ne peut pas être déterminé, demandez-moi de le préciser
+
+2. VÉRIFICATION DES FICHIERS
    - vérifier s'il y a des fichiers à commiter (modifiés, non suivis, ou déjà stagés)
    - Si aucun fichier n'est à commiter, informez-moi clairement pourquoi la commande ne peut pas s'exécuter
    - Affichez le résultat de votre analyse pour confirmation
 
-2. ANALYSE DES MODIFICATIONS
+3. ANALYSE DES MODIFICATIONS
    - Examinez les fichiers modifiés
    - Groupez logiquement les fichiers par fonctionnalité ou composant
    - Établissez un ordre de commit basé sur les dépendances (les composants de base avant les fonctionnalités qui en dépendent)
 
-3. PLAN DE COMMITS
+4. PLAN DE COMMITS
    - Présentez un plan détaillé des commits que vous allez créer
    - Pour chaque commit prévu, indiquez:
      * Nom du commit (courte description)
@@ -18,23 +26,17 @@ Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à or
      * Description des modifications apportées dans ces fichiers
      * Justification du regroupement de ces fichiers
 
-4. DESCRIPTION GLOBALE DES MODIFICATIONS
+5. DESCRIPTION GLOBALE DES MODIFICATIONS
    - Fournissez une description globale de l'ensemble des modifications apportées
    - Expliquez comment ces modifications s'intègrent dans le projet et leur impact potentiel
 
-5. DESCRIPTION DETAILLÉE DES MODIFICATIONS
+6. DESCRIPTION DETAILLÉE DES MODIFICATIONS
    - Pour chaque fichier modifié, fournissez une description détaillée des changements et expliquer ce qui a été fait
    - Indiquez les lignes de code ajoutées ou supprimées
    - Expliquez pourquoi ces changements sont nécessaires et comment ils améliorent le projet
    - Mentionnez les tickets ou tâches associés à ces modifications
    - Indiquez si des tests sont nécessaires après ces modifications
    - Si des tests sont nécessaires, précisez comment les tests doivent être effectués et quels outils utiliser
-
-6. DÉTECTION DU CONTEXTE GIT
-   - Utilisez `git branch --show-current` ou un tool a votre disposition pour déterminer la branche actuelle
-   - Extrayez le ticket correspondant depuis le nom de la branche
-   - Le format du ticket est attendu comme suit: CARACTÈRES_MAJUSCULES-NOMBRE (exemple: JIRA-123)
-   - Si le ticket ne peut pas être déterminé, demandez-moi de le préciser
 
 7. TEST COMMIT LINT NOT THROW ERROR
    - Vérifiez si le message de commit respecte les règles de linting configurées dans le projet
