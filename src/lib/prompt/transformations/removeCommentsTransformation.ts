@@ -1,14 +1,20 @@
-import { Transformation } from '../../styles/types';
-import { TransformationPlugin } from './types';
+import { Transformation } from '../types';
+import { TransformationPlugin, RemoveCommentsParams } from './types'; // Import specific params type
 import { logger } from '../../utils/logger';
 
 export class RemoveCommentsTransformation implements TransformationPlugin {
-    apply(content: string, params: Transformation): string {
-        if (params.type !== 'removeComments') {
-            logger.warn(0, 'Invalid params type for RemoveCommentsTransformation');
+    // Use generic params here, cast inside
+    apply(content: string, params: RemoveCommentsParams): string {
+        // Cast and validate
+        const specificParams = params;
+        if (specificParams.type !== 'removeComments') {
+            logger.warn(0, 'Invalid params type for RemoveCommentsTransformation', params);
+            // Decide on behavior: return content or proceed with defaults?
+            // Let's proceed with defaults for now.
         }
 
-        const commentTypes = params.commentTypes || ['html', 'js']; // Default types
+        // Use validated/defaulted params
+        const commentTypes = specificParams.commentTypes || ['html', 'js']; // Default types
         let result = content;
 
         if (commentTypes.includes('html')) {
@@ -19,15 +25,16 @@ export class RemoveCommentsTransformation implements TransformationPlugin {
             // Remove single-line comments // ...
             result = result.replace(/\/\/.*$/gm, '');
             // Remove multi-line comments /* ... */
+            // Ensure non-greedy match for nested or adjacent comments
             result = result.replace(/\/\*[\s\S]*?\*\//g, '');
         }
         // Add more comment types here if needed (e.g., python #)
-        // if (commentTypes.includes('python')) {
-        //     result = result.replace(/#.*$/gm, '');
-        // }
+        if (commentTypes.includes('python')) {
+             result = result.replace(/#.*$/gm, '');
+        }
 
         // Optional: Trim lines that become empty after comment removal
-        if (params.trimEmptyLines) {
+        if (specificParams.trimEmptyLines) {
             result = result.split('\n').filter(line => line.trim() !== '').join('\n');
         }
 

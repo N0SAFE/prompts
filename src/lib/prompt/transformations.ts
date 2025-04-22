@@ -1,4 +1,4 @@
-import { Transformation } from '../styles/types'; // Keep this for the input type
+import { Transformation } from './types'; // Corrected import path
 import { transformationRegistry } from './transformations/index'; // Import the registry
 import { logger } from '../utils/logger';
 
@@ -6,7 +6,7 @@ import { logger } from '../utils/logger';
  * Applies the specified transformations to the included content using a plugin system.
  *
  * @param content The content to transform
- * @param transforms Array of transformation operations to apply
+ * @param transforms Array of transformation operations to apply (now using the union type)
  * @returns The transformed content
  */
 export function applyTransformations(content: string, transforms: Transformation[] | null | undefined): string {

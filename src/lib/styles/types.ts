@@ -16,21 +16,3 @@ export enum StyleType {
   Inline = 'inline',
   Indent = 'indent',
 }
-
-/**
- * Represents a single transformation step.
- */
-export type Transformation = 
-  | { type: 'removeLines'; lines: number[] } // 0-based line indices to remove
-  | { type: 'removeRegex'; pattern: string; flags?: string } // Regex pattern to remove matches
-  | { type: 'addPrefix'; text: string } // Text to add at the beginning
-  | { type: 'addSuffix'; text: string }; // Text to add at the end
-
-/**
- * Represents the parameters for the include directive.
- */
-export interface IncludeParams {
-  file: string;
-  style?: string;
-  transform?: Transformation[];
-}

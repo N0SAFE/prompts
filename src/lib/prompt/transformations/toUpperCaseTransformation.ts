@@ -1,14 +1,15 @@
-import { Transformation } from '../../styles/types';
-import { TransformationPlugin } from './types';
+import { Transformation } from '../types';
+import { TransformationPlugin, ToUpperCaseParams } from './types'; // Import specific params type
 import { logger } from '../../utils/logger';
 
 export class ToUpperCaseTransformation implements TransformationPlugin {
-    apply(content: string, params: Transformation): string {
-        if (params.type !== 'toUpperCase') {
-            // This check might seem redundant if called via registry,
-            // but good practice for direct use or testing.
-            logger.warn(0, 'Invalid params type for ToUpperCaseTransformation');
-            // No specific params needed for this type, so we proceed.
+    // Use generic params here, cast inside
+    apply(content: string, params: ToUpperCaseParams): string {
+        // Cast and validate (even if params are simple)
+        const specificParams = params;
+        if (specificParams.type !== 'toUpperCase') {
+            logger.warn(0, 'Invalid params type for ToUpperCaseTransformation', params);
+             // Still proceed, as no specific params are strictly needed for the core logic
         }
         return content.toUpperCase();
     }

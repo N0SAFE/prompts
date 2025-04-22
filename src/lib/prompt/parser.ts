@@ -1,7 +1,7 @@
 // filepath: /home/sebille/Bureau/projects/tests/prompts/src/lib/promptProcessor/parser.ts
 import { logger } from '../utils/logger';
-import { StyleType, Transformation } from '../styles'; // Assuming styles exports this
-import { IncludeOptions, IncludeParams } from './types';
+import { StyleType } from '../styles'; // Assuming styles exports this
+import { IncludeOptions, IncludeParams, Transformation } from './types';
 import {
     LEGACY_LINE_REGEX,
     LEGACY_REGEX_REGEX,

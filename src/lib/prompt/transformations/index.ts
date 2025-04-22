@@ -5,12 +5,12 @@ import { RemoveLinesTransformation } from './removeLinesTransformation';
 import { RemoveRegexTransformation } from './removeRegexTransformation';
 import { AddPrefixTransformation } from './addPrefixTransformation';
 import { AddSuffixTransformation } from './addSuffixTransformation';
-import { SliceTransformation } from './sliceTransformation';
-import { ReplaceTransformation } from './replaceTransformation';
-import { ToUpperCaseTransformation } from './toUpperCaseTransformation';
-import { ToLowerCaseTransformation } from './toLowerCaseTransformation';
-import { TrimTransformation } from './trimTransformation';
-import { RemoveCommentsTransformation } from './removeCommentsTransformation';
+import { SliceTransformation } from './sliceTransformation'; // Import Slice
+import { ReplaceTransformation } from './replaceTransformation'; // Import Replace
+import { ToUpperCaseTransformation } from './toUpperCaseTransformation'; // Import ToUpper
+import { ToLowerCaseTransformation } from './toLowerCaseTransformation'; // Import ToLower
+import { TrimTransformation } from './trimTransformation'; // Import Trim
+import { RemoveCommentsTransformation } from './removeCommentsTransformation'; // Import RemoveComments
 
 // Registry to map transformation type strings to plugin instances
 export const transformationRegistry: { [key: string]: TransformationPlugin } = {
@@ -18,26 +18,26 @@ export const transformationRegistry: { [key: string]: TransformationPlugin } = {
     'removeRegex': new RemoveRegexTransformation(),
     'addPrefix': new AddPrefixTransformation(),
     'addSuffix': new AddSuffixTransformation(),
-    'slice': new SliceTransformation(),
-    'replace': new ReplaceTransformation(),
-    'toUpperCase': new ToUpperCaseTransformation(),
-    'toLowerCase': new ToLowerCaseTransformation(),
-    'trim': new TrimTransformation(),
-    'removeComments': new RemoveCommentsTransformation(),
+    'slice': new SliceTransformation(), // Register Slice
+    'replace': new ReplaceTransformation(), // Register Replace
+    'toUpperCase': new ToUpperCaseTransformation(), // Register ToUpper
+    'toLowerCase': new ToLowerCaseTransformation(), // Register ToLower
+    'trim': new TrimTransformation(), // Register Trim
+    'removeComments': new RemoveCommentsTransformation(), // Register RemoveComments
     // Register other transformations here
 };
 
 // Export the interface and individual classes
-export * from './types';
+export * from './types'; // Export all types from types.ts
 export {
     RemoveLinesTransformation,
     RemoveRegexTransformation,
     AddPrefixTransformation,
     AddSuffixTransformation,
-    SliceTransformation,
-    ReplaceTransformation,
-    ToUpperCaseTransformation,
-    ToLowerCaseTransformation,
-    TrimTransformation,
-    RemoveCommentsTransformation,
+    SliceTransformation, // Export Slice
+    ReplaceTransformation, // Export Replace
+    ToUpperCaseTransformation, // Export ToUpper
+    ToLowerCaseTransformation, // Export ToLower
+    TrimTransformation, // Export Trim
+    RemoveCommentsTransformation, // Export RemoveComments
 };

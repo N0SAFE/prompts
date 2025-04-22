@@ -1,13 +1,16 @@
-import { Transformation } from '../../styles/types';
-import { TransformationPlugin } from './types';
+import { Transformation } from '../types';
+import { TransformationPlugin, AddPrefixParams } from './types'; // Import specific params type
 import { logger } from '../../utils/logger';
 
 export class AddPrefixTransformation implements TransformationPlugin {
-    apply(content: string, params: Transformation): string {
-        if (params.type !== 'addPrefix' || typeof params.text !== 'string') {
-            logger.warn(0, 'Invalid params for AddPrefixTransformation');
+    // Use generic params here, cast inside
+    apply(content: string, params: AddPrefixParams): string {
+        // Cast and validate
+        const specificParams = params;
+        if (specificParams.type !== 'addPrefix' || typeof specificParams.text !== 'string') {
+            logger.warn(0, 'Invalid params for AddPrefixTransformation', params);
             return content;
         }
-        return params.text + content;
+        return specificParams.text + content;
     }
 }
