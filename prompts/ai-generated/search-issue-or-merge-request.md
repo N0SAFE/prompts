@@ -7,4 +7,6 @@ For example:
 - `GITHUB:1234` should search on GitHub, to know more about the issue or pull request with ID `1234`.
 - `GITLAB:5678` should search on GitLab to know more about the issue or merge request with ID `5678`.
 
+ these should act like little link to external data where you can search to have more information about the context of the conversation.
+
 Please use the appropriate tools and APIs provided by JIRA, GitHub, or GitLab to fetch the relevant information.

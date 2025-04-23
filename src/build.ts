@@ -37,13 +37,11 @@ async function ensureDirectoryExists(dirPath: string): Promise<void> {
 async function findPromptFiles(): Promise<string[]> {
     // Construct the pattern using path.join for OS compatibility
     let pattern = path.join(promptsDir, '**', '*.md');
-    let ignorePattern = path.join(promptsDir, 'ai-generated', '**');
 
     // Glob expects POSIX-style paths, even on Windows. Convert backslashes.
     pattern = pattern.replace(/\\/g, '/'); // Correctly escape backslash for regex within string
-    ignorePattern = ignorePattern.replace(/\\/g, '/'); // Correctly escape backslash for regex within string
 
-    return await glob(pattern, { ignore: [ignorePattern], absolute: true });
+    return await glob(pattern, { ignore: [], absolute: true });
 }
 
 /**
