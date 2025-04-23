@@ -6,6 +6,8 @@
 export function minifyPromptContent(content: string): string {
   // Remove HTML-style comments
   let minified = content.replace(/<!--.*?-->/gs, '');
+  // replace all line returns with a \n character
+  minified = minified.replace(/\r?\n/g, '\\n');
   // Replace multiple whitespace characters (including newlines) with a single space
   minified = minified.replace(/\s+/g, ' ');
   // Trim leading/trailing whitespace
