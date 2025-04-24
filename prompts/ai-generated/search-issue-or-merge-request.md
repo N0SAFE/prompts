@@ -5,6 +5,7 @@ When you see a reference like `JIRA:Something`, `GITHUB:Something`, or `GITLAB:S
 ## General Behavior
 
 These references act like links to external data where you can search to have more information about the context of the conversation.
+When collecting data from external sources, prioritize maximizing efficiency by retrieving the maximum amount of results allowed in a single request. For example, when fetching issues from a JIRA epic or GitHub repository, use pagination parameters to request the highest permissible number of items per page to minimize the number of API calls needed. if the number of result is equal to the maximum number of items per page, you should assume that there are more results and continue to paginate until you reach the end of the results.
 
 ## GitHub Search Behavior
 
