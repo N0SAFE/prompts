@@ -10,6 +10,8 @@ export function minifyPromptContent(content: string): string {
   minified = minified.replace(/\r?\n/g, '\\n');
   // Replace multiple whitespace characters (including newlines) with a single space
   minified = minified.replace(/\s+/g, ' ');
+  // replace all the " characters with a \"
+  minified = minified.replace(/"/g, '\\"')
   // Trim leading/trailing whitespace
   return minified.trim();
 }
