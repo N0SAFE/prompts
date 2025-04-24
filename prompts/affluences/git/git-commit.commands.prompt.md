@@ -9,7 +9,7 @@ Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à or
    - Si le ticket ne peut pas être déterminé, demandez-moi de le préciser
 
 2. VÉRIFICATION DES FICHIERS
-   - vérifier s'il y a des fichiers à commiter (modifiés, non suivis, ou déjà stagés)
+   - vérifier s'il y a des fichiers à committer (modifiés, non suivis, ou déjà stagés) utiliser des outils à votre disposition comme l'outil nommé get_changed_files
    - Si aucun fichier n'est à commiter, informez-moi clairement pourquoi la commande ne peut pas s'exécuter
    - Affichez le résultat de votre analyse pour confirmation
 
