@@ -38,18 +38,12 @@ Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à or
    - Indiquez si des tests sont nécessaires après ces modifications
    - Si des tests sont nécessaires, précisez comment les tests doivent être effectués et quels outils utiliser
 
-7. TEST COMMIT LINT NOT THROW ERROR
-   - Vérifiez si le message de commit respecte les règles de linting configurées dans le projet
-   - Si le message ne respecte pas les règles, indiquez-le et fournissez des suggestions pour le corriger
-   - comment vérifier le message de commit: 
-     {{include: ./test-commit-message-lint.prompt.md#L13, style: indent}}
-
-8. CORRECT COMMIT MESSAGE
+7. CORRECT COMMIT MESSAGE
    - Si le message de commit respecte les règles, indiquez-le et fournissez le message de commit final
    - Si le message ne respecte pas les règles, fournissez un message corrigé
    - Si d'autre choses sont à faire avant de commiter, indiquez-le et faite les modifications nécessaires
 
-9. GÉNÉRATION DES COMMITS
+8. GÉNÉRATION DES COMMITS
    - Pour chaque groupe de fichiers, générez une commande Git complète incluant:
      * `git add` pour les fichiers spécifiques de ce groupe
      * `git commit` avec un message au format précis:
@@ -59,7 +53,7 @@ Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à or
    - La commande doit être prête à être copiée-collée et exécutée
    - Les parenthèses sont utilisées uniquement pour le nom de la fonctionnalité, pas pour le ticket
 
-10. COMMANDE DE REVERT
+9. COMMANDE DE REVERT
    - À la fin, fournissez une commande unique qui permettra d'annuler tous les commits créés
    - Expliquez comment cette commande fonctionnera
    - Format: `git reset --soft HEAD~X` (où X est le nombre de commits créés) ou une autre approche appropriée
