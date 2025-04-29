@@ -46,6 +46,12 @@ Example: `GITLAB:5678` will search for issue or merge request #5678 in the most 
 When encountering a JIRA reference (e.g., `JIRA:PR-1212`):
 - Search for the ticket with the specified ID in the connected JIRA instance
 - Retrieve detailed ticket information including status, assignee, and description
+- If the ticket is part of an epic, retrieve the epic information
+- Retrieve all related tickets or linked issues to provide context
+- Retrieve the history of the ticket to understand its evolution
+- Retrieve all link inside the ticket to provide context
+- If no JIRA instance is connected, prompt the user to provide the necessary connection details
+- If the ticket ID is not in the expected format, prompt the user to clarify the ticket ID
 
 Example: `JIRA:PR-1212` will fetch information about ticket PR-1212 from JIRA.
 
