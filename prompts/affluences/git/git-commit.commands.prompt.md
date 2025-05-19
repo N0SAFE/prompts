@@ -1,12 +1,32 @@
-Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à organiser et créer des commits Git structurés. Suivez ces étapes précises:
+
+## Commandes spéciales pour la gestion des tickets
+
+Lorsque je vous donne la commande "commit!", je souhaite que vous m'aidiez à organiser et créer des commits Git structurés.
+En plus de la commande classique `commit!`, vous pouvez utiliser les syntaxes suivantes :
+
+- `commit!:no` : indique qu'aucun ticket n'est associé au commit. Dans ce cas, toutes les étapes liées à la détection ou à l'utilisation d'un ticket doivent être ignorées.
+- `commit!TICKET-NAME-1234` : indique explicitement le ticket à utiliser pour le commit (ex : JIRA-1234, PROJ-5678, etc.). Dans ce cas, il ne faut pas extraire le ticket depuis le nom de la branche ni demander à l'utilisateur, le ticket fourni est utilisé tel quel.
+
+Lorsque vous traitez une commande de type `commit!`, appliquez la logique suivante :
+- Si la commande est `commit!:no`, ignorez toutes les étapes relatives au ticket (pas de détection, pas d'insertion dans le message de commit).
+- Si la commande est `commit!TICKET-NAME-1234`, utilisez ce ticket pour tous les messages de commit, sans extraction depuis la branche.
+- Sinon, appliquez la logique standard (extraction du ticket depuis la branche, ou demande à l'utilisateur si non trouvé).
+
+---
+
+## Instructions pour la gestion des commits Git
+Lorsque je vous demande de m'aider à créer des commits Git, suivez ces étapes :
 
 1. DÉTECTION DU CONTEXTE GIT
-   - Si je vous ai preciser precedemment de ne pas utiliser de ticket, ne tenez pas compte de cette étape
-   - command suivi de no-ticket ou no ticket alors passer cette étape
-   - Utilisez `git branch --show-current` ou un tool a votre disposition pour déterminer la branche actuelle
-   - Extrayez le ticket correspondant depuis le nom de la branche
-   - Le format du ticket est attendu comme suit: CARACTÈRES_MAJUSCULES-NOMBRE (exemple: JIRA-123)
-   - Si le ticket ne peut pas être déterminé, demandez-moi de le préciser
+   - Si la commande est `commit!:no`, passez directement à l'étape 2 (aucun ticket ne sera utilisé dans les messages de commit).
+   - Si la commande est de la forme `commit!TICKET-NAME-1234`, utilisez ce ticket pour tous les messages de commit et passez directement à l'étape 2.
+   - Sinon :
+     - Si je vous ai précisé précédemment de ne pas utiliser de ticket, ne tenez pas compte de cette étape
+     - command suivi de no-ticket ou no ticket alors passer cette étape
+     - Utilisez `git branch --show-current` ou un tool à votre disposition pour déterminer la branche actuelle
+     - Extrayez le ticket correspondant depuis le nom de la branche
+     - Le format du ticket est attendu comme suit : CARACTÈRES_MAJUSCULES-NOMBRE (exemple : JIRA-123)
+     - Si le ticket ne peut pas être déterminé, demandez-moi de le préciser
 
 2. VÉRIFICATION DES FICHIERS
    - vérifier s'il y a des fichiers à committer (modifiés, non suivis, ou déjà stagés) utiliser des outils à votre disposition comme l'outil nommé get_changed_files

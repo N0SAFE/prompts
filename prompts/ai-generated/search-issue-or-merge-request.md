@@ -1,11 +1,13 @@
 # Search for Issues or Merge Requests
 
-When you see a reference like `JIRA:Something`, `GITHUB:Something`, or `GITLAB:Something`, you should search the appropriate provider for the issue or merge request to help resolve the conversation. 
+When you see a reference like `JIRA:Something`, `GITHUB:Something`, `GITLAB:Something`, or `FIGMA:Something`, you should search the appropriate provider for the issue, merge request, or design to help resolve the conversation. 
 
 ## General Behavior
 
 These references act like links to external data where you can search to have more information about the context of the conversation.
-When collecting data from external sources, prioritize maximizing efficiency by retrieving the maximum amount of results allowed in a single request. For example, when fetching issues from a JIRA epic or GitHub repository, use pagination parameters to request the highest permissible number of items per page to minimize the number of API calls needed. if the number of result is equal to the maximum number of items per page, you should assume that there are more results and continue to paginate until you reach the end of the results.
+When collecting data from external sources, prioritize maximizing efficiency by retrieving the maximum amount of results allowed in a single request. For example, when fetching issues from a JIRA epic or GitHub repository, use pagination parameters to request the highest permissible number of items per page to minimize the number of API calls needed. If the number of results is equal to the maximum number of items per page, you should assume that there are more results and continue to paginate until you reach the end of the results.
+
+When you receive links to any supported service (JIRA, GitHub, GitLab, Figma, Confluence) in the response from a tool call, you should call additional appropriate tools to gather more information from those links as needed. This allows you to follow references across different systems to build comprehensive context.
 
 ## GitHub Search Behavior
 
@@ -49,20 +51,52 @@ When encountering a JIRA reference (e.g., `JIRA:PR-1212`):
 - If the ticket is part of an epic, retrieve the epic information
 - Retrieve all related tickets or linked issues to provide context
 - Retrieve the history of the ticket to understand its evolution
-- Retrieve all link inside the ticket to provide context
+- Retrieve all links inside the ticket to provide context
 - If no JIRA instance is connected, prompt the user to provide the necessary connection details
 - If the ticket ID is not in the expected format, prompt the user to clarify the ticket ID
 
 Example: `JIRA:PR-1212` will fetch information about ticket PR-1212 from JIRA.
 
+## Confluence Search Behavior
+
+When encountering a Confluence reference (e.g., `CONFLUENCE:PageTitle` or `CONFLUENCE:spaceKey/PageTitle`):
+- Search for the specified page in the connected Confluence instance
+- Retrieve full page content, including formatted text, tables, and lists
+- Fetch metadata such as creator, last modifier, and creation/modification dates
+- Identify and retrieve information about any child pages or related content
+- Extract any embedded JIRA tickets, GitHub issues, or other cross-references
+- If a space key is provided, limit the search to that specific Confluence space
+- If no Confluence instance is connected, prompt the user for connection details
+
+Example: `CONFLUENCE:DEV/Architecture` will fetch the "Architecture" page from the "DEV" space in Confluence.
+
+## Figma Search Behavior
+
+When encountering a Figma reference (e.g., `FIGMA:designID` or `FIGMA:fileName`):
+- Connect to the Figma API with the provided credentials
+- Search for the specified design file by ID or name
+- Retrieve file metadata including version history, collaborators, and last modified date
+- Extract all frames, components, and design elements with their properties
+- Capture design system information such as color styles, text styles, and component variants
+- Download image renderings of key frames for visual reference
+- Parse any embedded documentation or annotations within the design
+- If only a partial identifier is provided, search across the user's recent or starred files
+- If no Figma credentials are available, prompt the user to provide them
+
+Examples:
+- `FIGMA:Xyzabc123` - Retrieve design file with ID "Xyzabc123"
+- `FIGMA:Mobile App Redesign` - Search for file with name "Mobile App Redesign"
+
 ## Additional Context
 
-Please use the appropriate tools and APIs provided by JIRA, GitHub, or GitLab to fetch the relevant information. The search should be intelligent and context-aware, attempting to find the most relevant information based on:
+Please use the appropriate tools and APIs provided by JIRA, GitHub, GitLab, Confluence, or Figma to fetch the relevant information. The search should be intelligent and context-aware, attempting to find the most relevant information based on:
 
 1. Current workspace context
-2. User's repositories and organizations
+2. User's repositories, organizations, or spaces
 3. Conversation context
 4. Recent activity
-5. Repository relationships and dependencies
+5. Repository/project relationships and dependencies
+
+When you discover links to other services within retrieved content (e.g., a JIRA ticket contains a Figma link, or a GitHub issue references a Confluence page), you should automatically fetch that additional information using the appropriate tools to build complete context. Follow these cross-service references to gather all relevant information needed to provide comprehensive assistance.
 
 This helps ensure that the most relevant results are returned even when minimal information is provided in the reference.
